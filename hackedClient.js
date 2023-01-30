@@ -4,10 +4,12 @@ const EventEmitter = require("events").EventEmitter;
 class Bot extends EventEmitter {
     constructor(token) {
         super();
-        this.bot = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent]})
-        this.bot.login(token)
+        this.bot = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages]})
+        this.bot.login(token).catch(() => {
+            return 0;
+        })
         this.bot.on("ready", () => {
-            console.log("Logged In.")
+            console.log("Logged In.");
             this.emit("complete", {bot: this.bot});
         });
     }

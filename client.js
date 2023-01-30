@@ -1,10 +1,14 @@
 const {Bot} = require("./hackedClient");
+const channelShow = require("./render/renderChannels");
+const messageShow = require("./render/renderMessages");
+const fs = require("fs");
 
 
 document.getElementById("login").addEventListener("click", async () => {
    const token = document.getElementById("token").value;
    if(token.length === 0) return;
    global.bot = await new Bot(token);
+   if(bot === 0) return document.getElementById("login-label").innerText = "Invalid Token!"
    bot.once("complete", (client) => {
       document.getElementById("login").style.display = "none";
       document.getElementById("login-label").style.display = "none";
@@ -28,14 +32,19 @@ document.getElementById("login").addEventListener("click", async () => {
          guildCircle.className = `guildCircle`;
 
          guildPfp.addEventListener("mouseover", () => {
+            guildCircle.style.borderRadius = "25%";
             guildName.style.display = "block";
          });
          guildPfp.addEventListener("mouseout", () => {
+            guildCircle.style.borderRadius = "50%";
             guildName.style.display = "none";
-         })
+         });
+         guildCircle.addEventListener("click", () => {
+            channelShow.run(bot, guild);
+         });
          guildCircle.appendChild(guildPfp);
          guildCircle.appendChild(guildName);
          guildFrame.appendChild(guildCircle);
-      })
-   })
-})
+      });
+   });
+});

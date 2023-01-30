@@ -1,0 +1,28 @@
+.guildCircle img {
+    border-radius: 50%;
+}
+#guild-frame{
+    background-color: #202225;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.guildName {
+    margin-top: 17px;
+    width: 100px;
+    height: 15px;
+    color: white;
+    background-color: #18191C;
+    display: none;
+    text-align: center;
+}
+
+.guildCircle {
+    gap: 10px;
+    display: flex;
+}
+
+
+body {
+    background-color: dimgray;
+}

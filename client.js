@@ -3,6 +3,7 @@ const channelShow = require("./render/renderChannels");
 const messageShow = require("./render/renderMessages");
 const messageReceived = require("./render/messageReceived");
 const fs = require("fs");
+const {Events} = require("discord.js");
 
 
 document.getElementById("login").addEventListener("click", async () => {
@@ -48,7 +49,7 @@ document.getElementById("login").addEventListener("click", async () => {
          guildFrame.appendChild(guildCircle);
       });
 
-      client.bot.on("message", (m) => {
+      client.bot.on(Events.MessageCreate, (m) => {
          console.log("Message Received from discordjs")
          messageReceived.run(bot, m);
       });

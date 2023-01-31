@@ -8,7 +8,7 @@ module.exports = {
             const messageDiv = document.createElement("div");
             const messageContent = document.createTextNode(message.content)
             messageDiv.appendChild(messageContent);
-            messageFrame.appendChild(messageDiv);
+            messageFrame.insertBefore(messageDiv, messageFrame.lastChild);
         }
     }
 }

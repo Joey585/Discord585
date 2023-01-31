@@ -29,3 +29,9 @@
 body {
     background-color: dimgray;
 }
+#message-frame:before{
+    vertical-align: bottom;
+}
+.messageBox {
+    vertical-align: bottom;
+}

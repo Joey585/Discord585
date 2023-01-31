@@ -13,8 +13,12 @@ module.exports = {
             messageFrame.appendChild(messageDiv);
         }
 
+        reverseChildren(messageFrame);
+
+
         const messageBox = document.createElement("input");
-        messageBox.placeholder = `Message #${channel.name}`
+        messageBox.placeholder = `Message #${channel.name}`;
+        messageBox.className = 'messageBox';
         document.addEventListener("keydown", (e) => {
             if(e.key === "Enter") {
                 if(messageBox.value.length > 0) {
@@ -25,5 +29,11 @@ module.exports = {
         });
         messageFrame.appendChild(messageBox);
 
+    }
+}
+
+function reverseChildren(parent) {
+    for (var i = 1; i < parent.childNodes.length; i++){
+        parent.insertBefore(parent.childNodes[i], parent.firstChild);
     }
 }

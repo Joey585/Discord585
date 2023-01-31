@@ -7,15 +7,23 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow-y: scroll;
+}
+#channel-frame{
+    background-color: hsl(223, calc(var(--saturation-factor, 1) * 6.9%), 19.8%);;
 }
 .guildName {
     margin-top: 17px;
-    width: 100px;
-    height: 15px;
+    width: available;
+    height: auto;
     color: white;
     background-color: #18191C;
     display: none;
     text-align: center;
+    position: absolute;
+    margin-left: 10%;
+    white-space: nowrap;
+    word-wrap: break-word;
 }
 
 .guildCircle {
@@ -28,9 +36,18 @@
 
 body {
     background-color: dimgray;
+    --saturation-factor: 1;
+    overflow-x: hidden;
 }
 #message-frame:before{
     vertical-align: bottom;
+}
+.messageDiv{
+    word-wrap: break-word;
+}
+#message-frame{
+    width: 100%;
+    background-color: hsl(220, calc(var(--saturation-factor, 1) * 7.7%), 22.9%);;
 }
 .messageBox {
     vertical-align: bottom;

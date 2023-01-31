@@ -6,7 +6,7 @@ module.exports = {
             console.log("Message is from the selected channel!")
             const messageFrame = document.getElementById("message-frame");
             const messageDiv = document.createElement("div");
-            const messageContent = document.createTextNode(message.content)
+            const messageContent = document.createTextNode(`${message.author.username}: ${message.content}`)
             messageDiv.appendChild(messageContent);
             messageFrame.insertBefore(messageDiv, messageFrame.lastChild);
         }

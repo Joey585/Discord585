@@ -13,6 +13,6 @@
     "electron": "^22.1.0"
   },
   "dependencies": {
-    "discord.js": "^14.7.1"
+    "discord.js-selfbot-v13": "^2.10.1"
   }
 }

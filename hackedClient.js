@@ -1,12 +1,16 @@
-const {Client, GatewayIntentBits} = require("discord.js");
+const {Client} = require("discord.js-selfbot-v13");
 const EventEmitter = require("events").EventEmitter;
 
 class Bot extends EventEmitter {
     constructor(token) {
         super();
-        this.bot = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages]})
-        this.bot.login(token).catch(() => {
-            return 0;
+        this.bot = new Client({})
+        this.bot.login(token).catch((e) => {
+            this.emit("fail", (e));
+        });
+
+        this.bot.on("error", (e) => {
+            console.log(e)
         })
         this.bot.on("ready", () => {
             console.log("Logged In.");

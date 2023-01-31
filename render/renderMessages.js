@@ -8,7 +8,8 @@ module.exports = {
 
         for(const message of recentMessages){
             const messageDiv = document.createElement("div");
-            const messageContent = document.createTextNode(message[1].content)
+            const messageContent = document.createElement("span");
+            messageContent.innerHTML = (`${message[1].author.username}: ${parseMessage(message[1].content)}`);
             messageDiv.appendChild(messageContent);
             messageFrame.appendChild(messageDiv);
         }
@@ -36,4 +37,9 @@ function reverseChildren(parent) {
     for (var i = 1; i < parent.childNodes.length; i++){
         parent.insertBefore(parent.childNodes[i], parent.firstChild);
     }
+}
+
+function parseMessage(messageContent){
+    messageContent.replaceAll("\n", "<br>")
+    return messageContent;
 }

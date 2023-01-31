@@ -1,6 +1,7 @@
 const {Bot} = require("./hackedClient");
 const channelShow = require("./render/renderChannels");
 const messageShow = require("./render/renderMessages");
+const messageReceived = require("./render/messageReceived");
 const fs = require("fs");
 
 
@@ -46,5 +47,11 @@ document.getElementById("login").addEventListener("click", async () => {
          guildCircle.appendChild(guildName);
          guildFrame.appendChild(guildCircle);
       });
+
+      client.bot.on("message", (m) => {
+         console.log("Message Received from discordjs")
+         messageReceived.run(bot, m);
+      });
    });
+
 });

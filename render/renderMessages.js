@@ -12,5 +12,18 @@ module.exports = {
             messageDiv.appendChild(messageContent);
             messageFrame.appendChild(messageDiv);
         }
+
+        const messageBox = document.createElement("input");
+        messageBox.placeholder = `Message #${channel.name}`
+        document.addEventListener("keydown", (e) => {
+            if(e.key === "Enter") {
+                if(messageBox.value.length > 0) {
+                    bot.sendMessage(channel, messageBox.value);
+                    messageBox.value = "";
+                }
+            }
+        });
+        messageFrame.appendChild(messageBox);
+
     }
 }

@@ -20,6 +20,14 @@ class Bot extends EventEmitter {
             return m;
         })
     }
+    setCurrentChannel(channel){
+        this.currentChannel = channel;
+    }
+    getCurrentChannel(){
+        if(this.currentChannel){
+            return this.currentChannel;
+        }
+    }
 
 }
 

@@ -13,7 +13,8 @@ module.exports = {
             const channelDiv = document.createElement("div");
 
             channelDiv.addEventListener("click", () => {
-               messagesShow.run(bot, channel);
+                bot.setCurrentChannel(channel);
+                messagesShow.run(bot, channel);
             });
 
             const channelName = document.createTextNode(`#${channel.name}`);

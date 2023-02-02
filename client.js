@@ -1,20 +1,31 @@
 const {Bot} = require("./hackedClient");
 const channelShow = require("./render/renderChannels");
 const messageShow = require("./render/renderMessages");
+const {defaultToken} = require("./config.json");
 const messageReceived = require("./render/messageReceived");
 const fs = require("fs");
 
 
 document.getElementById("login").addEventListener("click", async () => {
-   const token = document.getElementById("token").value;
+   await startBot(document.getElementById("token").value);
+});
+
+document.getElementById("token-remember").addEventListener("click", async () => {
+   if(!defaultToken) { return document.getElementById("error").innerText = "There is no token in config!";}
+   await startBot(defaultToken);
+});
+
+
+
+async function startBot(token) {
    if(token.length === 0) return;
 
-   global.bot = await new Bot(token);
+   const bot = await new Bot(token);
 
    loginVisibility("loading");
 
    bot.on("fail", (e) => {
-      if(e.toString().includes("[TOKEN_INVALID]")){
+      if(e.toString().includes("[TOKEN_INVALID]")) {
          document.getElementById("error").innerText = "Your token is invalid!";
          loginVisibility(true);
          document.getElementById("login").value = "";
@@ -64,7 +75,8 @@ document.getElementById("login").addEventListener("click", async () => {
       });
    });
 
-});
+
+}
 
 function loginVisibility(show){
    if(show){

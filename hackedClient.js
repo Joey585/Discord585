@@ -32,6 +32,9 @@ class Bot extends EventEmitter {
             return this.currentChannel;
         }
     }
+    getDiscordImage(){
+        return ""
+    }
 
 }
 

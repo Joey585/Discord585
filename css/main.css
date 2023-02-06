@@ -8,6 +8,7 @@
     flex-direction: column;
     gap: 10px;
     overflow-y: scroll;
+    width: 90px;
 }
 #channel-frame{
     background-color: hsl(223, calc(var(--saturation-factor, 1) * 6.9%), 19.8%);;
@@ -27,6 +28,7 @@
 }
 
 .guildCircle {
+    margin-left: 10px;
     gap: 10px;
     display: flex;
 }

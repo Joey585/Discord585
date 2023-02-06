@@ -4,6 +4,7 @@ const messageShow = require("./render/renderMessages");
 const {defaultToken} = require("./config.json");
 const messageReceived = require("./render/messageReceived");
 const fs = require("fs");
+const renderDms = require("./render/renderDms");
 
 
 document.getElementById("login").addEventListener("click", async () => {
@@ -35,12 +36,22 @@ async function startBot(token) {
    bot.once("complete", (client) => {
       loginVisibility(false);
       document.getElementById("login-label").style.display = "none";
+      const guildFrame = document.getElementById("guild-frame");
+
       const guilds = client.bot.guilds.cache;
 
       document.title = `Control panel for ${client.bot.user.username}`
 
+      const discordDms = document.createElement("div");
+
+
+      discordDms.appendChild(document.createI);
+      discordDms.addEventListener("click", () => {
+         renderDms.run(bot);
+      });
+
+
       guilds.forEach((guild) => {
-         const guildFrame = document.getElementById("guild-frame");
          const guildCircle = document.createElement("div");
          const guildPfp = document.createElement("img");
          const guildName = document.createElement("p")
@@ -51,6 +62,8 @@ async function startBot(token) {
          guildPfp.src = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=64`;
          guildCircle.id = guild.name;
          guildCircle.className = `guildCircle`;
+
+
 
          guildPfp.addEventListener("mouseover", () => {
             guildCircle.style.borderRadius = "25%";
@@ -66,8 +79,11 @@ async function startBot(token) {
          });
          guildCircle.appendChild(guildPfp);
          guildCircle.appendChild(guildName);
+         guildFrame.appendChild(discordDms);
          guildFrame.appendChild(guildCircle);
       });
+      console.log(guildFrame.firstChild)
+      guildFrame.insertBefore(discordDms, guildFrame.firstChild);
 
       client.bot.on("messageCreate", (m) => {
          console.log("Message Received from discordjs")
@@ -83,16 +99,19 @@ function loginVisibility(show){
       document.getElementById("login").style.display = "block";
       document.getElementById("login-label").innerText = "Enter your token:"
       document.getElementById("token").style.display = "block";
+      document.getElementById("token-remember").style.display = "none";
    }
    if(show === "loading"){
       document.getElementById("login").style.display = "none";
       document.getElementById("login-label").innerText = "Loading..."
       document.getElementById("token").style.display = "none";
+      document.getElementById("token-remember").style.display = "none";
       document.getElementById("error").innerText = "";
    }
    if(!show){
       document.getElementById("login").style.display = "none";
       document.getElementById("login-label").style.display = "none";
       document.getElementById("token").style.display = "none";
+      document.getElementById("token-remember").style.display = "none";
    }
 }

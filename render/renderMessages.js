@@ -18,7 +18,7 @@ module.exports = {
 
 
         const messageBox = document.createElement("input");
-        messageBox.placeholder = `Message #${channel.name}`;
+        messageBox.placeholder = `Message ${channel.name ? "#" + channel.name : "@" + channel.recipient.username }`;
         messageBox.className = 'messageBox';
         document.addEventListener("keydown", (e) => {
             if(e.key === "Enter") {

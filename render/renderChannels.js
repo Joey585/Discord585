@@ -1,4 +1,5 @@
 const messagesShow = require("./renderMessages");
+const renderDms = require("./renderDms");
 
 module.exports = {
     name: "channelShow",

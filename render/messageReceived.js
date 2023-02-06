@@ -2,6 +2,8 @@ module.exports = {
     name: "receiveMessage",
     description: "Fires when the bot received a message",
     run: async (bot, message) => {
+        if(!bot.getCurrentChannel()) return;
+
         if(message.channel.id === bot.getCurrentChannel().id){
             console.log("Message is from the selected channel!")
             const messageFrame = document.getElementById("message-frame");

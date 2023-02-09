@@ -43,9 +43,7 @@ async function startBot(token) {
       document.title = `Control panel for ${client.bot.user.username}`
 
       const discordDms = document.createElement("div");
-
-
-      discordDms.appendChild(document.createI);
+      discordDms.appendChild(document.createTextNode("DMS"));
       discordDms.addEventListener("click", () => {
          renderDms.run(bot);
       });
